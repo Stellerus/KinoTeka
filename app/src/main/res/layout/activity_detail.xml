@@ -42,11 +42,11 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Общие поля -->
+            <!-- Common fields -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Название"
+                android:hint="@string/hint_title"
                 android:layout_marginBottom="12dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_title"
@@ -55,7 +55,7 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Поля фильма -->
+            <!-- Movie fields -->
             <LinearLayout
                 android:id="@+id/movie_fields"
                 android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Режиссёр"
+                    android:hint="@string/hint_director"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_director"
@@ -78,7 +78,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Год"
+                    android:hint="@string/hint_year"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_year"
@@ -90,7 +90,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Жанр"
+                    android:hint="@string/hint_genre"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_genre"
@@ -102,7 +102,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Длительность (мин)"
+                    android:hint="@string/hint_duration"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_duration"
@@ -114,7 +114,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Оценка (0-10)"
+                    android:hint="@string/hint_rating"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_rating"
@@ -124,7 +124,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Поля сериала -->
+            <!-- Series fields -->
             <LinearLayout
                 android:id="@+id/series_fields"
                 android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Создатели"
+                    android:hint="@string/hint_creators"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_creators"
@@ -147,7 +147,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Годы выхода (напр. 2016-2023)"
+                    android:hint="@string/hint_years"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_years"
@@ -159,7 +159,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Жанр"
+                    android:hint="@string/hint_genre"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_genre_series"
@@ -171,7 +171,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Количество сезонов"
+                    android:hint="@string/hint_seasons"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_seasons"
@@ -183,7 +183,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Статус просмотра"
+                    android:text="@string/label_status"
                     android:layout_marginBottom="8dp" />
 
                 <Spinner

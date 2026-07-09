@@ -2,7 +2,6 @@ package com.example.kinoteka
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +12,10 @@ import com.example.kinoteka.model.Movie
 import com.example.kinoteka.model.Series
 import com.example.kinoteka.repository.MediaRepository
 
+/**
+ * Main screen — displays the list of all media items.
+ * Supports adding items (with type selection) and deleting items.
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -24,27 +27,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "Кинотека"
+        supportActionBar?.title = getString(R.string.toolbar_main)
 
+        // Load persisted data
         MediaRepository.load(this)
 
         adapter = MediaAdapter(
             items = MediaRepository.getAll(),
             onItemClick = { item ->
+                // Navigate to detail screen
                 val intent = Intent(this, DetailActivity::class.java)
                 intent.putExtra("item_id", item.id)
                 startActivity(intent)
             },
             onDeleteClick = { item ->
+                // Show confirmation dialog before deletion
                 AlertDialog.Builder(this)
-                    .setTitle("Удалить?")
-                    .setMessage("Вы уверены, что хотите удалить \"${item.title}\"?")
-                    .setPositiveButton("Удалить") { _, _ ->
+                    .setTitle(getString(R.string.delete_dialog_title))
+                    .setMessage(getString(R.string.delete_dialog_message, item.title))
+                    .setPositiveButton(getString(R.string.delete_positive)) { _, _ ->
                         MediaRepository.delete(item.id)
                         MediaRepository.save(this)
                         refreshList()
                     }
-                    .setNegativeButton("Отмена", null)
+                    .setNegativeButton(getString(R.string.delete_negative), null)
                     .show()
             }
         )
@@ -52,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
 
+        // FAB opens type-selection dialog
         binding.addButton.setOnClickListener {
             showAddDialog()
         }
@@ -62,24 +69,24 @@ class MainActivity : AppCompatActivity() {
         refreshList()
     }
 
+    /** Refreshes the RecyclerView and toggles the empty-state placeholder. */
     private fun refreshList() {
         adapter.setItems(MediaRepository.getAll())
-        if (adapter.itemCount == 0) {
-            binding.emptyText.visibility = android.view.View.VISIBLE
-        } else {
-            binding.emptyText.visibility = android.view.View.GONE
-        }
+        binding.emptyText.visibility =
+            if (adapter.itemCount == 0) android.view.View.VISIBLE
+            else android.view.View.GONE
     }
 
+    /** Asks the user to choose between Movie and Series, then creates a new item. */
     private fun showAddDialog() {
-        val types = arrayOf("Фильм", "Сериал")
+        val types = arrayOf(getString(R.string.add_movie), getString(R.string.add_series))
         AlertDialog.Builder(this)
-            .setTitle("Добавить")
+            .setTitle(getString(R.string.add_dialog_title))
             .setItems(types) { _, which ->
                 val newItem: MediaItem = when (which) {
                     0 -> Movie(
                         id = MediaRepository.generateId(),
-                        titleField = "Новый фильм",
+                        titleField = getString(R.string.default_movie_title),
                         director = "",
                         year = 2024,
                         genre = "",
@@ -88,17 +95,18 @@ class MainActivity : AppCompatActivity() {
                     )
                     1 -> Series(
                         id = MediaRepository.generateId(),
-                        titleField = "Новый сериал",
+                        titleField = getString(R.string.default_series_title),
                         creators = "",
                         years = "",
                         genre = "",
                         seasons = 1,
-                        status = "Смотрю"
+                        status = getString(R.string.status_watching)
                     )
                     else -> return@setItems
                 }
                 MediaRepository.add(newItem)
                 MediaRepository.save(this)
+                // Open the new item in detail screen for editing
                 val intent = Intent(this, DetailActivity::class.java)
                 intent.putExtra("item_id", newItem.id)
                 startActivity(intent)

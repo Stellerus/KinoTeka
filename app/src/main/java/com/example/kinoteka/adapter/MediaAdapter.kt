@@ -11,6 +11,9 @@ import com.example.kinoteka.model.MediaItem
 import com.example.kinoteka.model.Movie
 import com.example.kinoteka.model.Series
 
+/**
+ * RecyclerView adapter for displaying a mixed list of Movies and Series.
+ */
 class MediaAdapter(
     private var items: List<MediaItem>,
     private val onItemClick: (MediaItem) -> Unit,
@@ -24,6 +27,7 @@ class MediaAdapter(
         val deleteButton: ImageView = view.findViewById(R.id.delete_button)
     }
 
+    /** Updates the adapter data and refreshes the view. */
     fun setItems(newItems: List<MediaItem>) {
         items = newItems
         notifyDataSetChanged()
@@ -39,6 +43,7 @@ class MediaAdapter(
         val item = items[position]
         holder.titleText.text = item.title
 
+        // Show type-specific icon and subtitle
         when (item) {
             is Movie -> {
                 holder.typeIcon.setImageResource(R.drawable.ic_movie)

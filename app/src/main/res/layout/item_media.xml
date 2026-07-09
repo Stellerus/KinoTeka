@@ -19,7 +19,7 @@
             android:id="@+id/type_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="Тип"
+            android:contentDescription="@string/content_desc_type_icon"
             android:layout_marginEnd="12dp" />
 
         <LinearLayout
@@ -52,7 +52,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@android:drawable/ic_menu_delete"
-            android:contentDescription="Удалить"
+            android:contentDescription="@string/content_desc_delete"
             android:padding="4dp"
             android:layout_gravity="center_vertical"
             android:background="?attr/selectableItemBackgroundBorderless" />

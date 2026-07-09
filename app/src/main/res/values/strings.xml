@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KinoTeKa</string>
+    <string name="toolbar_main">KinoTeKa</string>
+    <string name="toolbar_detail">Details</string>
+    <string name="empty_list">List is empty. Add a movie or series.</string>
+    <string name="add_dialog_title">Add</string>
+    <string name="add_movie">Movie</string>
+    <string name="add_series">Series</string>
+    <string name="delete_dialog_title">Delete?</string>
+    <string name="delete_dialog_message">Are you sure you want to delete \"%s\"?</string>
+    <string name="delete_positive">Delete</string>
+    <string name="delete_negative">Cancel</string>
+    <string name="item_not_found">Item not found</string>
+    <string name="label_type_movie">Movie</string>
+    <string name="label_type_series">Series</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_director">Director</string>
+    <string name="hint_year">Year</string>
+    <string name="hint_genre">Genre</string>
+    <string name="hint_duration">Duration (min)</string>
+    <string name="hint_rating">Rating (0–10)</string>
+    <string name="hint_creators">Creators</string>
+    <string name="hint_years">Years (e.g. 2016–2023)</string>
+    <string name="hint_seasons">Number of seasons</string>
+    <string name="label_status">Watch status</string>
+    <string name="status_watching">Watching</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_dropped">Dropped</string>
+    <string name="content_desc_delete">Delete</string>
+    <string name="content_desc_type_icon">Type icon</string>
+    <string name="default_movie_title">New movie</string>
+    <string name="default_series_title">New series</string>
+</resources>

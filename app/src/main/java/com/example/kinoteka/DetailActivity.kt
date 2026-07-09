@@ -2,11 +2,9 @@ package com.example.kinoteka
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,18 +15,24 @@ import com.example.kinoteka.model.Movie
 import com.example.kinoteka.model.Series
 import com.example.kinoteka.repository.MediaRepository
 
+/**
+ * Detail screen — displays and allows editing of a single media item.
+ * Implements edge‑to‑edge design: content draws behind system bars.
+ */
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private var currentItem: MediaItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Enable edge-to-edge display
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Handle window insets for edge-to-edge
+        // Apply window insets so toolbar and scrollable content
+        // are not obscured by the status bar and navigation bar.
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             binding.toolbar.updatePadding(top = systemBars.top)
@@ -38,16 +42,18 @@ class DetailActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Детали"
+        supportActionBar?.title = getString(R.string.toolbar_detail)
 
+        // Back arrow → save changes and return
         binding.toolbar.setNavigationOnClickListener {
             saveAndFinish()
         }
 
+        // Load the item by ID passed from the previous screen
         val itemId = intent.getStringExtra("item_id") ?: return
         currentItem = MediaRepository.getById(itemId)
         if (currentItem == null) {
-            Toast.makeText(this, "Объект не найден", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.item_not_found), Toast.LENGTH_SHORT).show()
             finish()
             return
         }
@@ -56,11 +62,21 @@ class DetailActivity : AppCompatActivity() {
         displayItem(currentItem!!)
     }
 
+    /** Prepares the status dropdown for Series items. */
     private fun setupSpinner() {
-        val statusOptions = arrayOf("Смотрю", "Просмотрено", "Брошено")
-        binding.statusSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, statusOptions)
+        val statusOptions = arrayOf(
+            getString(R.string.status_watching),
+            getString(R.string.status_completed),
+            getString(R.string.status_dropped)
+        )
+        binding.statusSpinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            statusOptions
+        )
     }
 
+    /** Displays type-specific fields based on whether the item is a Movie or Series. */
     private fun displayItem(item: MediaItem) {
         when (item) {
             is Movie -> displayMovie(item)
@@ -69,7 +85,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun displayMovie(movie: Movie) {
-        binding.typeLabel.text = "Фильм"
+        binding.typeLabel.text = getString(R.string.label_type_movie)
         binding.movieFields.visibility = View.VISIBLE
         binding.seriesFields.visibility = View.GONE
 
@@ -82,7 +98,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun displaySeries(series: Series) {
-        binding.typeLabel.text = "Сериал"
+        binding.typeLabel.text = getString(R.string.label_type_series)
         binding.movieFields.visibility = View.GONE
         binding.seriesFields.visibility = View.VISIBLE
 
@@ -92,13 +108,18 @@ class DetailActivity : AppCompatActivity() {
         binding.editGenreSeries.setText(series.genre)
         binding.editSeasons.setText(if (series.seasons > 0) series.seasons.toString() else "")
 
-        val statusOptions = arrayOf("Смотрю", "Просмотрено", "Брошено")
+        val statusOptions = arrayOf(
+            getString(R.string.status_watching),
+            getString(R.string.status_completed),
+            getString(R.string.status_dropped)
+        )
         val position = statusOptions.indexOf(series.status)
         if (position >= 0) {
             binding.statusSpinner.setSelection(position)
         }
     }
 
+    /** Reads field values, updates the item in the repository, and persists changes. */
     private fun saveAndFinish() {
         val item = currentItem ?: return
 
@@ -117,7 +138,8 @@ class DetailActivity : AppCompatActivity() {
                 years = binding.editYears.text.toString(),
                 genre = binding.editGenreSeries.text.toString(),
                 seasons = binding.editSeasons.text.toString().toIntOrNull() ?: 1,
-                status = binding.statusSpinner.selectedItem?.toString() ?: "Смотрю"
+                status = binding.statusSpinner.selectedItem?.toString()
+                    ?: getString(R.string.status_watching)
             )
             else -> return
         }

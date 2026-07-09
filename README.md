@@ -1,28 +1,28 @@
-# KinoTeKa — Кинотека
+# KinoTeKa — Movie & Series Tracker
 
-Приложение для учёта фильмов и сериалов с постоянным хранением в локальном JSON-файле.
+An Android app for tracking movies and series with persistent storage in a local JSON file.
 
-## Требования
-- Android Studio Hedgehog (2023.1.1) или новее
+## Requirements
+- Android Studio Hedgehog (2023.1.1) or newer
 - Kotlin 1.9+
 - Gradle 8.x
-- Минимальная версия Android: API 26 (Android 8.0)
-- Целевая версия: API 34
+- Minimum Android version: API 26 (Android 8.0)
+- Target version: API 34
 
-## Структура проекта
-- `app/src/main/java/com/example/kinoteka/` — исходный код
-  - `MainActivity.kt` — главный экран со списком
-  - `DetailActivity.kt` — экран деталей (edge‑to‑edge)
-  - `model/` — модели данных (Movie, Series)
-  - `repository/` — репозиторий для работы с JSON
-  - `adapter/` — адаптер RecyclerView
-- `app/src/main/res/layout/` — макеты экранов
+## Project Structure
+- `app/src/main/java/com/example/kinoteka/` — source code
+  - `MainActivity.kt` — main screen with list
+  - `DetailActivity.kt` — detail screen (edge‑to‑edge)
+  - `model/` — data models (Movie, Series)
+  - `repository/` — repository for JSON storage
+  - `adapter/` — RecyclerView adapter
+- `app/src/main/res/layout/` — screen layouts
 
-## Сборка и запуск
-1. Откройте проект в Android Studio
-2. Синхронизируйте Gradle
-3. Запустите на устройстве или эмуляторе с API ≥ 26
+## Build & Run
+1. Open the project in Android Studio
+2. Sync Gradle
+3. Run on a device or emulator with API ≥ 26
 
-## Примечание
-Все данные сохраняются в файл `kinoteka.json` во внутренней памяти приложения.
-При удалении приложения файл удаляется.
+## Note
+All data is saved to the `kinoteka.json` file in the app's internal storage.
+Uninstalling the app removes the file.

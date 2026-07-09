@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Основная тема -->
+    <!-- Base theme -->
     <style name="Theme.KinoTeKa" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#4A90D9</item>
         <item name="colorPrimaryVariant">#357ABD</item>
@@ -11,7 +11,7 @@
         <item name="android:navigationBarColor">@color/nav_bar_color</item>
     </style>
 
-    <!-- Edge-to-Edge тема для DetailActivity -->
+    <!-- Edge‑to‑Edge theme for DetailActivity -->
     <style name="Theme.KinoTeKa.EdgeToEdge" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#4A90D9</item>
         <item name="colorPrimaryVariant">#357ABD</item>

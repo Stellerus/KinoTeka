@@ -9,11 +9,15 @@ import com.google.gson.reflect.TypeToken
 import java.io.File
 import java.util.UUID
 
+/**
+ * Repository for persisting media items as JSON in internal storage.
+ */
 object MediaRepository {
     private const val FILE_NAME = "kinoteka.json"
     private val gson = Gson()
     private var items: MutableList<MediaItem> = mutableListOf()
 
+    /** Load items from JSON file. Returns current list. */
     fun load(context: Context): List<MediaItem> {
         val file = File(context.filesDir, FILE_NAME)
         if (!file.exists()) {
@@ -39,14 +43,18 @@ object MediaRepository {
         }
     }
 
+    /** Returns a defensive copy of the current items list. */
     fun getAll(): List<MediaItem> = items.toList()
 
+    /** Finds an item by its unique ID. */
     fun getById(id: String): MediaItem? = items.find { it.id == id }
 
+    /** Adds a new item to the list. */
     fun add(item: MediaItem) {
         items.add(item)
     }
 
+    /** Replaces an existing item with updated data. */
     fun update(updatedItem: MediaItem) {
         val index = items.indexOfFirst { it.id == updatedItem.id }
         if (index != -1) {
@@ -54,10 +62,12 @@ object MediaRepository {
         }
     }
 
+    /** Removes an item by its ID. */
     fun delete(id: String) {
         items.removeAll { it.id == id }
     }
 
+    /** Persists the current state to the JSON file. */
     fun save(context: Context) {
         val file = File(context.filesDir, FILE_NAME)
         val enrichedList = items.map { item ->
@@ -71,5 +81,6 @@ object MediaRepository {
         file.writeText(json)
     }
 
+    /** Generates a unique ID for new items. */
     fun generateId(): String = UUID.randomUUID().toString()
 }
