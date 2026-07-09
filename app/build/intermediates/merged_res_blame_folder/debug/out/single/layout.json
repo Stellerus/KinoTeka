@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.example.kinoteka.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "com.example.kinoteka.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.kinoteka.app-mergeDebugResources-35:/layout/item_media.xml",
+        "source": "com.example.kinoteka.app-main-38:/layout/item_media.xml"
+    },
+    {
+        "merged": "com.example.kinoteka.app-mergeDebugResources-35:/layout/activity_detail.xml",
+        "source": "com.example.kinoteka.app-main-38:/layout/activity_detail.xml"
+    }
+]

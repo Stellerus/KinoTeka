@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.example.kinoteka.app-merged_res-36:/layout_item_media.xml.flat",
+        "source": "com.example.kinoteka.app-main-38:/layout/item_media.xml"
+    },
+    {
+        "merged": "com.example.kinoteka.app-merged_res-36:/drawable_ic_series.xml.flat",
+        "source": "com.example.kinoteka.app-main-38:/drawable/ic_series.xml"
+    },
+    {
+        "merged": "com.example.kinoteka.app-merged_res-36:/mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "com.example.kinoteka.app-main-38:/mipmap-hdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.kinoteka.app-merged_res-36:/layout_activity_detail.xml.flat",
+        "source": "com.example.kinoteka.app-main-38:/layout/activity_detail.xml"
+    },
+    {
+        "merged": "com.example.kinoteka.app-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "com.example.kinoteka.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.kinoteka.app-merged_res-36:/drawable_ic_movie.xml.flat",
+        "source": "com.example.kinoteka.app-main-38:/drawable/ic_movie.xml"
+    }
+]
